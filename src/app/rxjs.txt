@@ -1,0 +1,77 @@
+RXJS
+- Các Concepts nền tảng của Rxjs:
+  Observable: đại diện cho khái niệm về một tập hợp các giá trị hoặc các sự kiện trong tương lai. Khi các giá trị hoặc sự kiện phát sinh trong tương lai, Observable sẽ điều phối nó đến Observer.
+  Observer: là một tập hợp các callbacks tương ứng cho việc lắng nghe các giá trị (next, error, hay complete) được gửi đến bởi Observable.
+  Subscription: là kết quả có được sau khi thực hiện một Observable, nó thường dùng cho việc hủy việc tiếp tục xử lý.
+  Operators: là các pure functions cho phép lập trình functional với Observable.
+  Subject: để thực hiện việc gửi dữ liệu đến nhiều Observers (multicasting).
+  Schedulers: một scheduler sẽ điều khiển khi nào một subscription bắt đầu thực thi, và khi nào sẽ gửi tín hiệu đi.
+
+Producer vs Consumer, Push vs Pull
+- Producer: là nguồn sản sinh ra data.
+
+- Consumer: là nơi chế biến data sản sinh từ Producer.
+
+- Pull systems: Consumer sẽ quyết định khi nào lấy data từ Producer. Producer không quan tâm khi nào data sẽ được gửi đến cho Consumer.
+
+- Các function trong Javascript là một Pull system. Khi nào lời gọi hàm thì khi đó mới xử lý. Gọi n lần thì xử lý n lần.
+
+  Lưu ý: function chỉ trả về 1 giá trị sau khi lời gọi hàm được thực hiện. (một mảng cũng chỉ coi là 1 giá trị, vì nó được trả về 1 lần).
+
+  Push systems: Producer sẽ quyết định khi nào gửi dữ liệu cho Consumer. Consumer không quan tâm khi nào nhận được data.
+
+  Promise, DOM events là các Push systems. Chúng ta register các callbacks và khi event phát sinh, các callbacks sẽ được gọi với dữ liệu từ Producer truyền vào.
+
+Observable
+  Observable chỉ là một function (class) mà nó có một số yêu cầu đặc biệt. Nó nhận đầu vào là một Function, mà Function này nhận đầu vào là một Observer và trả về một function để có thể thực hiện việc cancel quá trình xử lý.
+  Thông thường (Rxjs 5) chúng ta đặt tên function đó là unsubscribe.
+  Observer: một object có chứa các phương thức next, error và complete để xử lý dữ liệu tương ứng với các signals được gửi từ Observable.
+
+  Creating Observables
+  Subscribing to Observables
+  Executing the Observable
+  Disposing Observables
+
+  Có ba kiểu giá trị mà một Observable Execution có thể gửi đi:
+
+  “Next” notification: gửi đi một giá trị, có thể là bất kỳ kiểu dữ liệu nào như Number, a String, an Object, etc.
+  “Error” notification: gửi đi một JavaScript Error hoặc exception.
+  “Complete” notification: không gửi đi một giá trị nào, nhưng nó gửi đi một tín hiệu để báo rằng stream này đã completed, mục đích để Observer có thể thực hiện một hành động nào đó khi stream completed.
+
+Observer
+  Observer là một Consumer những dữ liệu được gửi bởi Observable. Observer là một object chứa một tập 3 callbacks tương ứng cho mỗi loại notification được gửi từ Observable: next, error, complete.
+Subscription
+
+BehaviorSubject
+  Là một trong những subject trong Rxjs
+  Là một Observable đặc biệt cho phép lưu giá trị hiện  tại và phát ra giá trị cho tất cả các Subscriber đã đăng ký nó
+  Ex: để lưu trạng thái của một thành phần
+
+Subject
+  Là một trong những loại Observable có sẵn để quản lý truyền tải dữ liệu và thông báo giữa các thành phần của ứng dụng
+  Nó cho phép một thành phần tạo ra các sự kiện hoặc thông báo và gửi chúng tới các thành phần khác mà đang đăng ký
+  next(value): Phương thức này được sử dụng để gửi một giá trị tới các thành phần đang đăng ký. Khi một thành phần đăng ký với Subject, nó sẽ nhận được giá trị mới nhất được gửi đến bởi next().
+  subscribe(observer): Phương thức này được sử dụng để đăng ký một observer để theo dõi các giá trị được gửi đến bởi next(). Mỗi khi một giá trị mới được gửi đến bởi next(), tất cả các observer đang đăng ký với Subject đều sẽ nhận được giá trị này.
+  Subject được sử dụng rất phổ biến trong Angular để quản lý trạng thái và truyền tải dữ liệu giữa các thành phần của ứng dụng.
+
+Operators
+  Operator là một pure function. Với cùng một giá trị đầu vào, chúng ta sẽ luôn có cùng một giá trị ở đầu ra.
+  Operator nhận đầu vào là một Observable, sau đó xử lý và tạo mới một Observable để trả về, và giữ Observable đầu vào không bị thay đổi gì.
+
+  map: cho phép bạn áp dụng một hàm biến đổi (transform function) lên từng giá trị phát ra từ Observable, sau đó phát ra các giá trị mới đã được biến đổi
+  filter: Filtering Operators mục đích để filter các giá trị được emit thỏa mãn điều kiện nào đó.
+  take: Emit tối đa count giá trị, rồi complete.
+  takeUntil: là một operator rất hữu ích cho phép bạn giới hạn số lượng giá trị được phát ra từ một Observable dựa trên sự kiện của một Observable khác.
+  merge: được sử dụng để kết hợp nhiều Observable lại với nhau để tạo ra một Observable mới, có thể phát ra các giá trị từ tất cả các Observable đó.
+  concat: được sử dụng để kết hợp các Observable lại với nhau thành một Observable mới, sao cho mỗi Observable sẽ hoàn thành trước khi Observable tiếp theo bắt đầu phát ra giá trị của mình.
+  combineLatest: là một toán tử trong RxJS, được sử dụng để kết hợp các giá trị phát ra từ nhiều Observable thành một Observable mới, bằng cách lấy giá trị mới nhất từ mỗi Observable đó.
+  forkJoin: là một toán tử trong RxJS, được sử dụng để kết hợp nhiều Observable thành một Observable mới, bằng cách phát ra một giá trị cuối cùng khi tất cả các Observable đã hoàn thành.
+  mergeMap: là một toán tử trong RxJS, được sử dụng để chuyển đổi các giá trị phát ra từ một Observable thành các Observable khác, và kết hợp các giá trị phát ra từ tất cả các Observable con này thành một Observable mới.
+  concatMap: là một toán tử trong RxJS, được sử dụng để chuyển đổi các giá trị phát ra từ một Observable thành các Observable khác, và kết hợp các giá trị phát ra từ các Observable con này theo thứ tự tuần tự (sequential order), tức là chỉ khi một Observable con hoàn thành thì mới chuyển sang Observable con tiếp theo.
+  switchMap: là một toán tử trong RxJS, được sử dụng để chuyển đổi các giá trị phát ra từ một Observable thành các Observable khác, và chỉ phát ra các giá trị từ Observable mới nhất.
+
+Promise
+  Là một đối tượng được sử dụng để xử lý các hoạt động bất đồng bộ (asynchronous operations), chẳng hạn như gọi các API từ server.
+  Pending: Đây là trạng thái mặc định của một Promise khi được tạo ra. Nó cho biết rằng hoạt động bất đồng bộ chưa hoàn thành và giá trị trả về vẫn chưa được xác định.
+  Fulfilled: Trạng thái này xảy ra khi hoạt động bất đồng bộ thành công và Promise trả về một giá trị.
+  Rejected: Trạng thái này xảy ra khi hoạt động bất đồng bộ thất bại và Promise trả về một lỗi.
