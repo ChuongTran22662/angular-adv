@@ -75,3 +75,13 @@ Promise
   Pending: Đây là trạng thái mặc định của một Promise khi được tạo ra. Nó cho biết rằng hoạt động bất đồng bộ chưa hoàn thành và giá trị trả về vẫn chưa được xác định.
   Fulfilled: Trạng thái này xảy ra khi hoạt động bất đồng bộ thành công và Promise trả về một giá trị.
   Rejected: Trạng thái này xảy ra khi hoạt động bất đồng bộ thất bại và Promise trả về một lỗi.
+
+
+NGRX
+  Là một thư viện quản lý trạng thái của ứng dụng (state management library) trong Angular
+  Các thành phần chính của ngrx bao gồm:
+
+  Store: Lưu trữ toàn bộ trạng thái của ứng dụng.
+  Actions: Các hành động mà người dùng thực hiện trong ứng dụng.
+  Reducers: Xử lý các hành động và thay đổi trạng thái của ứng dụng.
+  Effects: Xử lý các tác vụ bất đồng bộ như lấy dữ liệu từ API và cập nhật trạng thái của ứng dụng.
