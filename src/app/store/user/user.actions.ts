@@ -12,7 +12,7 @@ export const login = createAction(
 
 export const loginSuccess = createAction(
   EUserActions.LOGIN_SUCCESS,
-  props<{ payload: any }>());
+  props<{ response: any }>());
 
 export const loginFailure = createAction(
   EUserActions.LOGIN_FAIL,

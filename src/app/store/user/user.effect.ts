@@ -2,32 +2,44 @@ import {Injectable} from "@angular/core";
 import {Actions, createEffect, ofType} from "@ngrx/effects";
 import {login, loginFailure, loginSuccess} from "./user.actions";
 import {catchError, exhaustMap, map, of, tap} from "rxjs";
-import {UserService} from "./user.service";
+import {AuthenticationService} from "../../services";
+import {ActivatedRoute, Router} from "@angular/router";
 
 @Injectable()
 export class UserEffects {
-  loginEffect$ = createEffect(() =>
+  login$ = createEffect(() =>
     this.action$.pipe(
       ofType(login),
       map(action => action.payload),
       exhaustMap((payload: any) =>
-        this.userService.login(payload).pipe(
-          map(response => loginSuccess(payload)),
+        this.authenticationService.login(payload.username, payload.password).pipe(
+          map(response => loginSuccess({response})),
           catchError(err => of(loginFailure({error: err})))
         )
       )
     )
   )
 
-  loginSuccessEffect$ = createEffect(() =>
-    this.action$.pipe(
-      ofType(loginSuccess),
-      tap(() => console.log('loggin success'))
-    )
-  )
+  loginSuccess$ = createEffect(
+    () =>
+      this.action$.pipe(
+        ofType(loginSuccess),
+        tap((user) => {
+          console.log('user', user);
+          this.router.navigate(['/']);
+          localStorage.setItem('user', JSON.stringify(user.response));
+          this.authenticationService.setUserValue(user.response);
+        }),
+      ),
+    {
+      dispatch: false,
+    },
+  );
 
   constructor(
     private readonly action$: Actions,
-    private readonly userService: UserService,
+    private readonly authenticationService: AuthenticationService,
+    private route: ActivatedRoute,
+    private readonly router: Router,
   ) { }
 }
