@@ -5,8 +5,7 @@ import {AuthGuard} from "./helpers";
 const routes: Routes = [
   {
     path: '',
-    loadChildren: () => import('./components/rxjs/rxjs.module').then(m => m.RxjsModule),
-    canActivate: [AuthGuard]
+    loadChildren: () => import('./pages/home/home.module').then(m => m.HomeModule),
   },
   {
     path: 'login',

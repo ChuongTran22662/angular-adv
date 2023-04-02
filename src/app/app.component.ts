@@ -1,4 +1,6 @@
 import {Component, OnInit} from '@angular/core';
+import {AuthenticationService} from "./services";
+import {Observable} from "rxjs";
 
 @Component({
   selector: 'app-root',
@@ -7,7 +9,18 @@ import {Component, OnInit} from '@angular/core';
 })
 export class AppComponent implements OnInit {
   isCollapsed = false;
+  user!: any;
+
+  constructor(private authService: AuthenticationService) {
+  }
 
   ngOnInit() {
+    this.authService.user.subscribe(res => {
+      this.user = res;
+    })
+  }
+
+  logout() {
+    this.authService.logout();
   }
 }

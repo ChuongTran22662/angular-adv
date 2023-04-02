@@ -38,7 +38,6 @@ registerLocaleData(en);
     BrowserAnimationsModule,
     NzLayoutModule,
     NzMenuModule,
-    NzBreadCrumbModule,
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },

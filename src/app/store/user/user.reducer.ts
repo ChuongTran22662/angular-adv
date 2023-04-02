@@ -21,7 +21,6 @@ const _authReducer = createReducer(
   initialState,
   on(login, state => ({...state, loading: true})),
   on(loginSuccess, (state, {response}) => {
-    console.log(response);
     return ({
       ...state,
       loading: false,

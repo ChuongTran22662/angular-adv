@@ -25,7 +25,6 @@ export class UserEffects {
       this.action$.pipe(
         ofType(loginSuccess),
         tap((user) => {
-          console.log('user', user);
           this.router.navigate(['/']);
           localStorage.setItem('user', JSON.stringify(user.response));
           this.authenticationService.setUserValue(user.response);

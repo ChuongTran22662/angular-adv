@@ -64,7 +64,7 @@ Operators
   takeUntil: là một operator rất hữu ích cho phép bạn giới hạn số lượng giá trị được phát ra từ một Observable dựa trên sự kiện của một Observable khác.
   merge: được sử dụng để kết hợp nhiều Observable lại với nhau để tạo ra một Observable mới, có thể phát ra các giá trị từ tất cả các Observable đó.
   concat: được sử dụng để kết hợp các Observable lại với nhau thành một Observable mới, sao cho mỗi Observable sẽ hoàn thành trước khi Observable tiếp theo bắt đầu phát ra giá trị của mình.
-  combineLatest: là một toán tử trong RxJS, được sử dụng để kết hợp các giá trị phát ra từ nhiều Observable thành một Observable mới, bằng cách lấy giá trị mới nhất từ mỗi Observable đó.
+  combineLatest: là một toán tử trong RxJS, được sử dụng để kết hợp các giá trị phát ra từ nhiều Observable thành một Observable mới, bằng cách lấy giá trị mới nhất từ mỗi Observable đó. (trả về [])
   forkJoin: là một toán tử trong RxJS, được sử dụng để kết hợp nhiều Observable thành một Observable mới, bằng cách phát ra một giá trị cuối cùng khi tất cả các Observable đã hoàn thành.
   mergeMap: là một toán tử trong RxJS, được sử dụng để chuyển đổi các giá trị phát ra từ một Observable thành các Observable khác, và kết hợp các giá trị phát ra từ tất cả các Observable con này thành một Observable mới.
   concatMap: là một toán tử trong RxJS, được sử dụng để chuyển đổi các giá trị phát ra từ một Observable thành các Observable khác, và kết hợp các giá trị phát ra từ các Observable con này theo thứ tự tuần tự (sequential order), tức là chỉ khi một Observable con hoàn thành thì mới chuyển sang Observable con tiếp theo.
