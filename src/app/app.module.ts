@@ -17,12 +17,17 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NzLayoutModule } from 'ng-zorro-antd/layout';
 import { NzMenuModule } from 'ng-zorro-antd/menu';
 import {NzBreadCrumbModule} from "ng-zorro-antd/breadcrumb";
+import {SocketIoConfig, SocketIoModule} from "ngx-socket-io";
+import { SocketioTestComponent } from './components/socketio-test/socketio-test.component';
 
 registerLocaleData(en);
+
+// const config: SocketIoConfig = { url: 'http://localhost:3000', options: {}};
 
 @NgModule({
   declarations: [
     AppComponent,
+    SocketioTestComponent,
   ],
   imports: [
     FormsModule,
@@ -38,6 +43,7 @@ registerLocaleData(en);
     BrowserAnimationsModule,
     NzLayoutModule,
     NzMenuModule,
+    // SocketIoModule.forRoot((config))
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },

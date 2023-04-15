@@ -2,3 +2,12 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+
+.custom-layout-left-right {
+  @apply w-1/5 bg-amber-600 h-full;
+}
+
+.custom-layout-main {
+  @apply w-3/5 bg-amber-50 h-full;
+}
